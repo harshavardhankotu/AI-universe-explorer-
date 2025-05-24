@@ -9,111 +9,43 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827; /* bg-gray-900 - Dark background */
-            color: #d1d5db; /* text-gray-300 - Light text for dark mode */
+            background-color: #111827; /* bg-gray-900 */
+            color: #d1d5db; /* text-gray-300 */
         }
         .tab-button {
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            color: #9ca3af; /* text-gray-400 for inactive tabs */
+            padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent; color: #9ca3af;
         }
         .tab-button.active {
-            background-color: #4f46e5; /* bg-indigo-600 */
-            color: white;
-            border-color: #4f46e5;
-            box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.3);
+            background-color: #4f46e5; color: white; border-color: #4f46e5; box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.3);
         }
         .tab-button:not(.active):hover {
-            background-color: #374151; /* bg-gray-700 */
-            color: #e5e7eb; /* text-gray-200 */
-            border-color: #4b5563; /* border-gray-600 */
+            background-color: #374151; color: #e5e7eb; border-color: #4b5563;
         }
-        .content-section {
-            display: none;
-        }
-        .content-section.active {
-            display: block;
-            animation: fadeIn 0.5s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .content-section { display: none; }
+        .content-section.active { display: block; animation: fadeIn 0.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .card {
-            background-color: #1f2937; /* bg-gray-800 - Darker cards */
-            border-radius: 0.75rem; 
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden;
-            border-top: 4px solid transparent; 
+            background-color: #1f2937; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; overflow: hidden; border-top: 4px solid transparent;
         }
         .card:hover {
-            transform: translateY(-6px) scale(1.02);
-            box-shadow: 0 10px 20px -3px rgba(0, 0, 0, 0.2), 0 4px 8px -2px rgba(0, 0, 0, 0.1);
+            transform: translateY(-6px) scale(1.02); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.2), 0 4px 8px -2px rgba(0,0,0,0.1);
         }
-        .card-content {
-            padding: 1.5rem;
-        }
-        .card-title {
-            font-size: 1.25rem; 
-            font-weight: 600; 
-            color: #f3f4f6; /* text-gray-100 */
-            margin-bottom: 0.5rem;
-        }
-        .card-company, .card-category {
-            font-size: 0.875rem; 
-            color: #9ca3af; /* text-gray-400 */
-            margin-bottom: 0.75rem;
-        }
-        .card-description-snippet {
-            font-size: 0.875rem; 
-            color: #d1d5db; /* text-gray-300 */
-            line-height: 1.6;
-            height: 4.8em; 
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .company-header {
-            font-size: 2.25rem; 
-            font-weight: 700; 
-            margin-bottom: 1.5rem; 
-            padding-bottom: 0.75rem;
-            border-bottom: 3px solid; /* Color set by JS */
-            display: flex;
-            align-items: center;
-            color: #e5e7eb; /* text-gray-200 */
-        }
-        .company-logo-header {
-            width: 36px; 
-            height: 36px; 
-            margin-right: 1rem;
-        }
-        .company-logo-header svg path[fill="#4285F4"], 
-        .company-logo-header svg path[fill="#34A853"],
-        .company-logo-header svg path[fill="#FBBC05"],
-        .company-logo-header svg path[fill="#EA4335"] {
-        }
-        .company-logo-header.openai-logo svg path { fill: #20c997; } 
-        .company-logo-header.meta-logo svg path { fill: #0095f6; } 
-        .company-logo-header.anthropic-logo svg { stroke: #c4b5fd; } 
-        .company-logo-header.other-logo svg { stroke: #fbbf24; } 
+        .card-content { padding: 1.5rem; }
+        .card-title { font-size: 1.25rem; font-weight: 600; color: #f3f4f6; margin-bottom: 0.5rem; }
+        .card-company, .card-category { font-size: 0.875rem; color: #9ca3af; margin-bottom: 0.75rem; }
+        .card-description-snippet { font-size: 0.875rem; color: #d1d5db; line-height: 1.6; height: 4.8em; overflow: hidden; text-overflow: ellipsis; }
+        
+        .company-header { font-size: 2.25rem; font-weight: 700; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 3px solid; display: flex; align-items: center; color: #e5e7eb; }
+        .company-logo-header { width: 36px; height: 36px; margin-right: 1rem; }
+        .company-logo-header.openai-logo svg path { fill: #20c997 !important; } 
+        .company-logo-header.meta-logo svg path { fill: #0095f6 !important; } 
+        .company-logo-header.anthropic-logo svg { stroke: #c4b5fd !important; } 
+        .company-logo-header.other-logo svg { stroke: #fbbf24 !important; } 
 
+        .model-family-header, .tool-category-header { font-size: 1.75rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 1.5rem; padding-left: 1rem; border-left: 5px solid; color: #d1d5db; }
 
-        .model-family-header, .tool-category-header {
-            font-size: 1.75rem; 
-            font-weight: 600; 
-            margin-top: 2.5rem;
-            margin-bottom: 1.5rem;
-            padding-left: 1rem;
-            border-left: 5px solid; /* Color set by JS */
-            color: #d1d5db; /* text-gray-300 */
-        }
-
-        /* Accent Colors for Dark Mode */
+        /* Accent Colors */
         .google-accent { color: #8ab4f8; border-color: #8ab4f8; } 
         .openai-accent { color: #20c997; border-color: #20c997; } 
         .meta-accent { color: #60a5fa; border-color: #60a5fa; }   
@@ -121,6 +53,12 @@
         .other-innovators-accent { color: #fbbf24; border-color: #fbbf24; } 
         .tools-video-accent { color: #f87171; border-color: #f87171; } 
         .tools-image-accent { color: #34d399; border-color: #34d399; } 
+        .tools-writing-accent { color: #a78bfa; border-color: #a78bfa; }
+        .tools-audio-accent { color: #f472b6; border-color: #f472b6; }
+        .tools-design-accent { color: #60a5fa; border-color: #60a5fa; }
+        .tools-dev-accent { color: #facc15; border-color: #facc15; } 
+        .tools-presentation-accent { color: #ec4899; border-color: #ec4899; }
+
 
         .card.google-card-accent { border-top-color: #8ab4f8; }
         .card.openai-card-accent { border-top-color: #20c997; }
@@ -129,89 +67,27 @@
         .card.other-card-accent { border-top-color: #fbbf24; }
         .card.tools-video-card-accent { border-top-color: #f87171; }
         .card.tools-image-card-accent { border-top-color: #34d399; }
+        .card.tools-writing-card-accent { border-top-color: #a78bfa; }
+        .card.tools-audio-card-accent { border-top-color: #f472b6; }
+        .card.tools-design-card-accent { border-top-color: #60a5fa; }
+        .card.tools-dev-card-accent { border-top-color: #facc15; }
+        .card.tools-presentation-card-accent { border-top-color: #ec4899; }
 
-
-        /* Modal Styles for Dark Mode - Refined for Authenticity */
-        .modal-overlay {
-            background-color: rgba(10, 10, 20, 0.85); 
-        }
-        .modal-content {
-            background-color: #1f2937; /* bg-gray-800 */
-            color: #d1d5db; /* text-gray-300 */
-            padding: 0; 
-            max-width: 520px; /* Adjusted for form content */
-        }
-        .modal-header-section {
-            padding: 1.5rem 2rem; 
-            border-bottom: 1px solid #374151; /* border-gray-700 */
-        }
-        .modal-body-section {
-            padding: 1.5rem 2rem; 
-        }
-        /* Removed modal-footer-section as button is now in body */
-
-        .modal-close-button {
-            color: #9ca3af; /* text-gray-400 */
-            font-size: 1.75rem;
-            line-height: 1;
-        }
-        .modal-close-button:hover {
-            color: #f3f4f6; /* text-gray-100 */
-        }
-        .modal-title { /* Used for the new subscribe title */
-            font-size: 1.5rem; /* text-2xl */
-            font-weight: 600; 
-            color: #f9fafb; /* text-gray-50 */
-            margin-bottom: 0.75rem;
-        }
-         .modal-intro-text {
-            font-size: 0.95rem;
-            color: #9ca3af; /* text-gray-400 */
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #d1d5db; /* text-gray-300 */
-        }
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border-radius: 0.375rem; /* rounded-md */
-            border: 1px solid #4b5563; /* border-gray-600 */
-            background-color: #374151; /* bg-gray-700 */
-            color: #f3f4f6; /* text-gray-100 */
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 1rem;
-        }
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: #4f46e5; /* border-indigo-600 */
-            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.5);
-        }
-        .form-textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        .form-submit-button {
-            display: inline-block;
-            background-color: #4f46e5; /* bg-indigo-600 */
-            color: white;
-            padding: 0.75rem 1.75rem; 
-            border-radius: 0.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            width: 100%; /* Make button full width */
-        }
-        .form-submit-button:hover {
-            background-color: #4338ca; /* bg-indigo-700 */
-            transform: translateY(-1px);
-        }
+        /* Modal Styles for Item Details */
+        .modal-overlay { background-color: rgba(10, 10, 20, 0.85); position: fixed; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0s 0.3s; }
+        .modal-overlay.active { opacity: 1; visibility: visible; transition: opacity 0.3s ease; }
+        .modal-content { background-color: #1f2937; color: #d1d5db; padding: 0; max-width: 680px; border-radius: 0.75rem; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); max-height: 85vh; overflow-y: auto; transform: scale(0.95); transition: transform 0.3s ease; }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        .modal-header-section { padding: 1.5rem 2rem; border-bottom: 1px solid #374151; }
+        .modal-body-section { padding: 1.5rem 2rem; }
+        .modal-footer-section { padding: 1rem 2rem; background-color: #171e2b; border-bottom-left-radius: 0.75rem; border-bottom-right-radius: 0.75rem; text-align: right; }
+        .modal-close-button { color: #9ca3af; font-size: 1.75rem; line-height: 1; cursor: pointer; }
+        .modal-close-button:hover { color: #f3f4f6; }
+        .modal-title { font-size: 1.875rem; font-weight: 700; color: #f9fafb; margin-bottom: 0.25rem; }
+        .modal-subtitle { font-size: 1rem; color: #9ca3af; margin-bottom: 0; }
+        .modal-description { color: #d1d5db; margin-bottom: 1.5rem; line-height: 1.75; font-size: 0.95rem; }
+        .modal-link { color: white; padding: 0.625rem 1.25rem; border-radius: 0.5rem; text-decoration: none; font-weight: 500; transition: background-color 0.3s ease, transform 0.2s ease; }
+        .modal-link:hover { filter: brightness(1.15); transform: translateY(-1px); }
     </style>
 </head>
 <body class="min-h-screen">
@@ -240,24 +116,16 @@
         <div class="modal-content relative">
             <div class="modal-header-section flex justify-between items-start">
                 <div>
-                    <h2 id="subscribeModalTitle" class="modal-title">Stay Updated & Share Your Thoughts!</h2>
+                    <h2 id="modalItemName" class="modal-title">Item Name</h2>
+                    <p id="modalItemSubtitle" class="modal-subtitle">Subtitle</p>
                 </div>
-                <span id="modalClose" class="modal-close-button cursor-pointer" title="Close">&times;</span>
+                <span id="modalClose" class="modal-close-button" title="Close">&times;</span>
             </div>
             <div class="modal-body-section">
-                <p id="subscribeModalIntro" class="modal-intro-text">Like this directory? Subscribe for updates on new AI models and tools. We'd also love to hear your suggestions!</p>
-                <form id="subscribeForm">
-                    <div class="mb-4">
-                        <label for="emailInput" class="form-label">Email Address</label>
-                        <input type="email" id="emailInput" name="email" class="form-input" placeholder="you@example.com" required>
-                    </div>
-                    <div class="mb-6">
-                        <label for="suggestionsInput" class="form-label">Suggestions / Feedback</label>
-                        <textarea id="suggestionsInput" name="suggestions" class="form-textarea" rows="4" placeholder="What models or tools should we add? Any other feedback?"></textarea>
-                    </div>
-                     <button type="submit" id="subscribeSubmitButton" class="form-submit-button">Subscribe & Suggest</button>
-                </form>
-                <p id="formStatusMessage" class="text-sm text-center mt-4"></p>
+                <p id="modalItemDescription" class="modal-description">Full description here...</p>
+            </div>
+            <div class="modal-footer-section">
+                 <a id="modalItemLink" href="#" target="_blank" rel="noopener noreferrer" class="modal-link">Learn More</a>
             </div>
         </div>
     </div>
@@ -309,7 +177,15 @@
                             models: [
                                 { name: "GPT-4o", description: "OpenAI's most advanced multimodal model, integrating text, audio, and image understanding and generation.", category: "Multimodal LLM", link: "https://openai.com/gpt-4o/" },
                                 { name: "GPT-4 Turbo", description: "A highly capable GPT-4 model optimized for speed and longer context windows, available via API.", category: "LLM", link: "https://openai.com/gpt-4" },
+                                { name: "GPT-4.1 Series (4.1, 4.1 mini, 4.1 nano)", description: "Latest GPT-4.1 series models offering varying balances of power, performance, and affordability. Excels at coding and instruction following.", category: "LLM", link: "https://openai.com/research/" },
                                 { name: "GPT-3.5 Turbo", description: "A fast and cost-effective model, suitable for a wide range of general tasks.", category: "LLM", link: "https://openai.com/gpt-3.5-turbo" }
+                            ]
+                        },
+                        {
+                            name: "Reasoning Models (o-series)",
+                             models: [
+                                { name: "OpenAI o3 / o4-mini", description: "Advanced reasoning models trained to think for longer, excelling in complex STEM problems, logic, coding, and agentic tool use.", category: "Reasoning LLM", link: "https://openai.com/index/introducing-o3-and-o4-mini/" },
+                                { name: "OpenAI o1", description: "An earlier reasoning model that spends time 'thinking' before answering, strong in science and programming. Predecessor to o3/o4-mini.", category: "Reasoning LLM", link: "https://openai.com/o1/" }
                             ]
                         },
                         {
@@ -322,13 +198,14 @@
                         {
                             name: "Speech & Audio Models (OpenAI)",
                             models: [
-                                { name: "Whisper", description: "A versatile speech recognition model for accurate transcription and translation.", category: "Speech Recognition", link: "https://openai.com/research/whisper" }
+                                { name: "Whisper", description: "A versatile speech recognition model for accurate transcription and translation.", category: "Speech Recognition", link: "https://openai.com/research/whisper" },
+                                { name: "Voice Engine", description: "A model for creating custom, natural-sounding speech from text and a short audio sample.", category: "Speech Synthesis", link: "https://openai.com/voice-engine" }
                             ]
                         },
                         {
                             name: "Developer Tools & APIs",
                             models: [
-                                 { name: "Embedding Models", description: "Models that convert text into numerical representations (embeddings) for tasks like semantic search, clustering, and classification.", category: "Embeddings API", link: "https://openai.com/embeddings" }
+                                 { name: "Embedding Models (e.g., text-embedding-3-small)", description: "Models that convert text into numerical representations (embeddings) for tasks like semantic search, clustering, and classification.", category: "Embeddings API", link: "https://openai.com/embeddings" }
                             ]
                         }
                     ]
@@ -344,7 +221,9 @@
                         {
                             name: "Llama Models (LLMs)",
                             models: [
-                                { name: "Llama 3", description: "Meta's latest generation of open-source large language models, with improved reasoning and coding abilities.", category: "LLM", link: "https://ai.meta.com/llama/" }
+                                { name: "Llama 4 Scout", description: "Part of Llama 4 series with MoE architecture, 17B active parameters, designed for accessibility and efficient on smaller GPU footprints.", category: "Multimodal LLM (MoE)", link: "https://ai.meta.com/llama/" },
+                                { name: "Llama 4 Maverick", description: "Part of Llama 4 series with MoE architecture, 17B active parameters within a larger framework, comparable to GPT-4o in coding/reasoning.", category: "Multimodal LLM (MoE)", link: "https://ai.meta.com/llama/" },
+                                { name: "Llama 3", description: "Meta's previous generation of open-source large language models, with improved reasoning and coding abilities.", category: "LLM", link: "https://ai.meta.com/llama/" }
                             ]
                         },
                         {
@@ -364,9 +243,18 @@
                     logoSvg: '<svg class="company-logo-header anthropic-logo" stroke="#c4b5fd" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 16.75A6.75 6.75 0 1112 5.25a6.75 6.75 0 010 13.5z"/><path d="M9.5 12l2 2 3-3"/></svg>',
                     modelFamilies: [
                         {
-                            name: "Claude Models (LLMs & Multimodal)",
+                            name: "Claude 4 Series (LLMs & Multimodal)",
                             models: [
-                                { name: "Claude 3 Opus", description: "Anthropic's most intelligent model, delivering state-of-the-art performance on complex tasks, with strong vision and coding capabilities.", category: "Multimodal LLM", link: "https://www.anthropic.com/claude" }
+                                { name: "Claude Opus 4", description: "Anthropic's most powerful model (as of May 2025), excelling in coding, advanced reasoning, and agentic tasks.", category: "Multimodal LLM", link: "https://www.anthropic.com/news/claude-4" },
+                                { name: "Claude Sonnet 4", description: "A significant upgrade from Sonnet 3.7, balancing high performance with efficiency, strong in coding and reasoning.", category: "Multimodal LLM", link: "https://www.anthropic.com/news/claude-4" }
+                            ]
+                        },
+                        {
+                            name: "Claude 3 Series (LLMs & Multimodal)",
+                            models: [
+                                { name: "Claude 3 Opus", description: "Anthropic's previous flagship intelligent model for complex tasks, with strong vision and coding capabilities.", category: "Multimodal LLM", link: "https://www.anthropic.com/claude" },
+                                { name: "Claude 3.5 Sonnet / Claude 3 Sonnet", description: "Anthropic's model balancing intelligence and speed, ideal for enterprise workloads and scaled AI deployments.", category: "Multimodal LLM", link: "https://www.anthropic.com/claude" },
+                                { name: "Claude 3.5 Haiku / Claude 3 Haiku", description: "Anthropic's fastest and most compact model for near-instant responsiveness in simple queries and requests.", category: "Multimodal LLM", link: "https://www.anthropic.com/claude" }
                             ]
                         }
                     ]
@@ -416,7 +304,11 @@
                         { name: "Runway", description: "Offers advanced video editing features, including AI-powered background removal, motion tracking, and video generation (Gen-2).", link: "https://runwayml.com/" },
                         { name: "Pictory", description: "Transforms long-form content (articles, scripts) into short, shareable videos using AI.", link: "https://pictory.ai/" },
                         { name: "HeyGen", description: "Creates AI-generated videos with talking avatars from text inputs.", link: "https://www.heygen.com/" },
-                        { name: "Clipchamp", description: "A user-friendly video editor with AI features, including text-to-speech and auto-captioning.", link: "https://www.clipchamp.com/" }
+                        { name: "Clipchamp", description: "A user-friendly video editor with AI features, including text-to-speech and auto-captioning.", link: "https://www.clipchamp.com/" },
+                        { name: "Synthesia", description: "AI video creation platform using AI avatars and voices from text.", link: "https://www.synthesia.io/"},
+                        { name: "Lumen5", description: "Transforms blog posts and articles into engaging video content using AI.", link: "https://lumen5.com/"},
+                        { name: "Fliki", description: "Create videos from scripts or blog posts using realistic AI voices in minutes.", link: "https://fliki.ai/"},
+                        { name: "D-ID", description: "Platform for creating videos with moving and talking avatars from photos.", link: "https://www.d-id.com/" }
                     ]
                 },
                 {
@@ -429,7 +321,71 @@
                         { name: "Craiyon", description: "A free AI model that creates images from textual descriptions (formerly DALL·E mini).", link: "https://www.craiyon.com/" },
                         { name: "Freepik AI Image Generator", description: "Offers AI-generated images with various styles and customization options.", link: "https://www.freepik.com/ai/image-generator" },
                         { name: "DeepAI Text-to-Image", description: "Converts text prompts into images using AI algorithms.", link: "https://deepai.org/machine-learning-model/text2img" },
-                        { name: "Photopea", description: "An online photo editor with AI features like background removal and image generation capabilities.", link: "https://www.photopea.com/" }
+                        { name: "Photopea", description: "An online photo editor with AI features like background removal and image generation capabilities.", link: "https://www.photopea.com/" },
+                        { name: "Midjourney", description: "An independent research lab producing a proprietary AI that creates images from textual descriptions.", link: "https://www.midjourney.com/"},
+                        { name: "NightCafe Creator", description: "AI Art Generator, create amazing artworks using the power of Artificial Intelligence.", link: "https://creator.nightcafe.studio/"},
+                        { name: "Adobe Firefly", description: "Adobe's family of creative generative AI models, integrated into Adobe products.", link: "https://www.adobe.com/sensei/generative-ai/firefly.html"}
+                    ]
+                },
+                {
+                    categoryName: "AI Writing Assistants",
+                    accentClass: "tools-writing-accent",
+                    cardAccentClass: "tools-writing-card-accent",
+                    modalButtonBg: "bg-violet-500 hover:bg-violet-600",
+                    items: [
+                        { name: "Jasper (formerly Jarvis)", description: "AI writing assistant for blogs, ad copy, social media posts, and more.", link: "https://www.jasper.ai/" },
+                        { name: "Copy.ai", description: "AI-powered writing tool that helps create high-quality content in seconds.", link: "https://www.copy.ai/" },
+                        { name: "Notion AI", description: "Integrates AI assistance directly into the Notion productivity platform.", link: "https://www.notion.so/ai" },
+                        { name: "Grammarly", description: "AI-powered writing assistant for grammar, spelling, punctuation, clarity, and style.", link: "https://www.grammarly.com/"},
+                        { name: "Wordtune", description: "AI writing tool that helps you rephrase and rewrite your text.", link: "https://www.wordtune.com/"}
+                    ]
+                },
+                {
+                    categoryName: "AI Audio & Music Tools",
+                    accentClass: "tools-audio-accent",
+                    cardAccentClass: "tools-audio-card-accent",
+                    modalButtonBg: "bg-pink-500 hover:bg-pink-600",
+                    items: [
+                        { name: "ElevenLabs", description: "AI voice generator for lifelike text-to-speech and voice cloning.", link: "https://elevenlabs.io/" },
+                        { name: "Murf.ai", description: "Online AI voice generator to create realistic voiceovers for videos and presentations.", link: "https://murf.ai/" },
+                        { name: "Soundraw", description: "AI music generator that lets you create unique, royalty-free music.", link: "https://soundraw.io/" },
+                        { name: "AIVA", description: "AI music composer for creating original soundtracks for various media.", link: "https://www.aiva.ai/" },
+                        { name: "Suno AI", description: "Generates original songs—with vocals—from simple text prompts.", link: "https://suno.ai/" },
+                        { name: "Speechify", description: "Text-to-speech reader that can turn any text into natural-sounding audio.", link: "https://speechify.com/"}
+                    ]
+                },
+                {
+                    categoryName: "AI Design & 3D Tools",
+                    accentClass: "tools-design-accent",
+                    cardAccentClass: "tools-design-card-accent",
+                    modalButtonBg: "bg-sky-500 hover:bg-sky-600",
+                    items: [
+                         { name: "Designs.ai", description: "Comprehensive AI design tool for logos, videos, banners, and mockups.", link: "https://designs.ai/" },
+                         { name: "Luma AI", description: "Generates high-quality videos and 3D visuals from text prompts and images.", link: "https://lumalabs.ai/" },
+                         { name: "Spline", description: "A 3D design tool that allows for easy creation and collaboration on 3D web experiences, often with AI-assisted features.", link: "https://spline.design/"},
+                         { name: "Fontjoy", description: "AI tool for generating font pairings.", link: "https://fontjoy.com/"}
+                    ]
+                },
+                {
+                    categoryName: "AI Presentation & Productivity Tools",
+                    accentClass: "tools-presentation-accent",
+                    cardAccentClass: "tools-presentation-card-accent",
+                    modalButtonBg: "bg-pink-600 hover:bg-pink-700",
+                    items: [
+                        { name: "Beautiful.ai", description: "AI presentation software that designs slides for you automatically.", link: "https://www.beautiful.ai/" },
+                        { name: "Presentations.ai", description: "AI-powered presentation maker to create stunning decks in minutes.", link: "https://presentations.ai/" },
+                        { name: "Tome", description: "AI-powered storytelling format for presentations, documents, and one-pagers.", link: "https://tome.app/" }
+                    ]
+                },
+                {
+                    categoryName: "AI Website & App Builders",
+                    accentClass: "tools-dev-accent",
+                    cardAccentClass: "tools-dev-card-accent",
+                    modalButtonBg: "bg-yellow-500 hover:bg-yellow-600",
+                    items: [
+                        { name: "Wix ADI (Artificial Design Intelligence)", description: "AI website builder that creates a personalized website with text and images.", link: "https://www.wix.com/adi" },
+                        { name: "Framer AI", description: "Generate and publish a website with AI in seconds.", link: "https://www.framer.com/ai/" },
+                        { name: "Microsoft Power Apps AI Builder", description: "Low-code platform to build apps with AI capabilities.", link: "https://powerplatform.microsoft.com/en-us/ai-builder/" }
                     ]
                 }
             ]
@@ -441,14 +397,11 @@
         const tabTools = document.getElementById('tabTools');
 
         const modal = document.getElementById('itemModal');
+        const modalItemName = document.getElementById('modalItemName');
+        const modalItemSubtitle = document.getElementById('modalItemSubtitle');
+        const modalItemDescription = document.getElementById('modalItemDescription');
+        const modalItemLink = document.getElementById('modalItemLink');
         const modalClose = document.getElementById('modalClose');
-        
-        const subscribeModalTitle = document.getElementById('subscribeModalTitle');
-        const subscribeModalIntro = document.getElementById('subscribeModalIntro');
-        const subscribeForm = document.getElementById('subscribeForm');
-        const emailInput = document.getElementById('emailInput');
-        const suggestionsInput = document.getElementById('suggestionsInput');
-        const formStatusMessage = document.getElementById('formStatusMessage');
         
         function createCard(item, companyName = null, itemType = 'model', cardAccentClass = '', itemAccentClass = '') {
             const card = document.createElement('div');
@@ -468,7 +421,7 @@
                     <p class="card-description-snippet">${item.description.substring(0, 100)}${item.description.length > 100 ? '...' : ''}</p>
                 </div>
             `;
-            card.addEventListener('click', () => openSubscribeModal());
+            card.addEventListener('click', () => openItemDetailModal(item, subtitleText, itemAccentClass));
             return card;
         }
 
@@ -543,12 +496,24 @@
             });
         }
 
-        function openSubscribeModal() {
-            subscribeModalTitle.textContent = "Stay Updated & Share Your Thoughts!";
-            subscribeModalIntro.textContent = "Like this directory? Subscribe for updates on new AI models and tools. We'd also love to hear your suggestions!";
-            emailInput.value = ''; 
-            suggestionsInput.value = ''; 
-            formStatusMessage.textContent = ''; 
+        function openItemDetailModal(item, subtitle, itemAccentClass) {
+            modalItemName.textContent = item.name || "N/A";
+            modalItemSubtitle.textContent = subtitle || item.category || "N/A";
+            modalItemDescription.textContent = item.description || "No description available.";
+            modalItemLink.href = item.link || '#'; 
+
+            let buttonBgClass = 'bg-indigo-500 hover:bg-indigo-600'; 
+            const company = aiData.companies.find(c => c.accentClass === itemAccentClass);
+            if (company && company.modalButtonBg) {
+                buttonBgClass = company.modalButtonBg;
+            } else {
+                const toolCat = aiData.tools.find(tc => tc.accentClass === itemAccentClass);
+                if (toolCat && toolCat.modalButtonBg) {
+                    buttonBgClass = toolCat.modalButtonBg;
+                }
+            }
+            modalItemLink.className = `modal-link ${buttonBgClass}`; 
+
             modal.classList.add('active');
         }
 
@@ -567,20 +532,29 @@
                 closeModal();
             }
         });
+        
+        const subscribeForm = document.getElementById('subscribeForm'); // This ID does not exist in the current modal
+        if (subscribeForm) { // This check will prevent errors if the form is not present
+            subscribeForm.addEventListener('submit', (event) => {
+                event.preventDefault(); 
+                const emailInput = document.getElementById('emailInput');
+                const suggestionsInput = document.getElementById('suggestionsInput');
+                const formStatusMessage = document.getElementById('formStatusMessage');
 
-        subscribeForm.addEventListener('submit', (event) => {
-            event.preventDefault(); 
-            const email = emailInput.value;
-            const suggestions = suggestionsInput.value;
-            
-            formStatusMessage.textContent = `Thank you, ${email}! Your feedback is valuable. (Demo - no actual submission)`;
-            formStatusMessage.className = 'text-sm text-center mt-4 text-green-400';
-            
-            setTimeout(() => {
-                emailInput.value = '';
-                suggestionsInput.value = '';
-            }, 3000);
-        });
+                const email = emailInput.value;
+                const suggestions = suggestionsInput.value;
+                
+                if(formStatusMessage) {
+                    formStatusMessage.textContent = `Thank you, ${email}! Your feedback is valuable. (Demo - no actual submission)`;
+                    formStatusMessage.className = 'text-sm text-center mt-4 text-green-400';
+                }
+                
+                setTimeout(() => {
+                    if(emailInput) emailInput.value = '';
+                    if(suggestionsInput) suggestionsInput.value = '';
+                }, 3000);
+            });
+        }
 
 
         tabModels.addEventListener('click', () => {
